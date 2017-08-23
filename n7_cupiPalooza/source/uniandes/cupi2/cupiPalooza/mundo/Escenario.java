@@ -13,6 +13,8 @@ package uniandes.cupi2.cupiPalooza.mundo;
 
 import java.util.ArrayList;
 
+
+
 /**
  * Un escenario en el cual se presentarán las bandas del festival. <br>
  * TODO Parte 1 Punto D: Documente la invariante de la clase.
@@ -59,7 +61,7 @@ public class Escenario
     /**
      * Lista de bandas programadas para el escenario.
      */
-    private ArrayList bandas;
+    private ArrayList<Banda> bandas;
 
     // -----------------------------------------------------------------
     // Constructores
@@ -78,7 +80,8 @@ public class Escenario
         numero = pNumero;
         patrocinador = pPatrocinador;
         presupuesto = pPresupuesto;
-        bandas = new ArrayList( );
+        bandas = new ArrayList<Banda>( );
+        verificarInvariante();
 
     }
 
@@ -157,6 +160,7 @@ public class Escenario
             bandas.add( banda );
             resultado = true;
         }
+        verificarInvariante();
         return resultado;
     }
 
@@ -175,7 +179,7 @@ public class Escenario
             bandas.remove( banda );
             resultado = true;
         }
-  
+        verificarInvariante();
         return resultado;
     }
 
@@ -209,12 +213,12 @@ public class Escenario
     public Banda buscarPorCantidadDeCanciones( int pCantidadCanciones )
     {
         // TODO Parte 4 Punto B: Completar el método según su documentación.
+    	ordenarPorCantidadDeCanciones();
     	Banda rpta=null;
     	int inicio=0;
     	int fin= bandas.size()-1;
     	boolean encontrada=false;
-    	while(inicio<=fin)
-    		
+    	while(inicio<=fin&&encontrada==false)
     	{
     		int mitad= (inicio+fin)/2;
     		Banda actual= (Banda) bandas.get(mitad);
@@ -232,6 +236,7 @@ public class Escenario
     			fin=mitad-1;
     		}
     	}
+    	return rpta;
     }
 
     /**
@@ -240,9 +245,26 @@ public class Escenario
      */
     public void ordenarPorNombre( )
     {
-        // TODO Parte 3 Punto A: Completar el método según su documentación.
-    	
 
+    	 for( int i = 0; i < bandas.size( ) ; i++ )
+         {
+             Banda menor = bandas.get( i );
+             int menorPosicion= i;
+
+             for( int j = i+1 ; j < bandas.size( ); j++ )
+             {
+                 Banda actual = bandas.get( j );
+                 if( actual.compararPorNombre( menor ) < 0 )
+                 {
+                     menor = actual;
+                     menorPosicion = j;
+                 }
+             }
+             Banda temp = bandas.get( i );
+             bandas.set( i, menor);
+             bandas.set( menorPosicion, temp );
+         }
+    	// TODO Parte 3 Punto A: Completar el método según su documentación.
     }
 
     /**
@@ -251,6 +273,22 @@ public class Escenario
      */
     public void ordenarPorCantidadDeFans( )
     {
+    	for( int i = 1; i < bandas.size( ); i++ )
+        {
+            Banda porInsertar = ( Banda ) bandas.get( i );
+            boolean termino = false;
+            for( int j = i; j > 0 && !termino; j-- )
+            {
+                Banda actual = ( Banda ) bandas.get( j - 1 );
+                if( actual.compararPorCantidadDeFans(porInsertar) < 0 )
+                {
+                    bandas.set( j, actual );
+                    bandas.set( j - 1, porInsertar );
+                }
+                else
+                    termino = true;
+            }
+        }
         // TODO Parte 3 Punto B: Completar el método según su documentación.
 
     }
@@ -261,6 +299,19 @@ public class Escenario
      */
     public void ordenarPorCantidadDeCanciones( )
     {
+    	  for( int i = bandas.size( ); i > 0; i-- )
+          {
+              for( int j = 0; j < i - 1; j++ )
+              {
+                  Banda a = ( Banda )bandas.get( j );
+                  Banda b = ( Banda )bandas.get( j+1);
+                  if( a.compararPorCantidadDeCanciones(b) >= 0  )
+                  {
+                      bandas.set( j, b );
+                      bandas.set( j+1, a );
+                  }
+              }
+          }
         // TODO Parte 3 Punto C: Completar el método según su documentación.
 
     }
@@ -277,7 +328,7 @@ public class Escenario
         assert (numero >0):" el numero debe ser mayor a 0";
         assert (patrocinador != null):"el patrocinador no puede ser null";
         assert (!patrocinador.equals("")):" patrocinador invalido";
-        assert ( bandas.size() < CANTIDAD_MAXIMA_BANDAS ):" la capacidad de bandas es excedida";
+        assert ( bandas.size() <= CANTIDAD_MAXIMA_BANDAS ):" la capacidad de bandas es excedida";
         
         
 

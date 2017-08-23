@@ -152,7 +152,6 @@ public class EscenarioTest
         escenario.agregarBanda( "Otra banda 8", 10, 10, 100, "rutaImagen" );
         escenario.agregarBanda( "Otra banda 9", 10, 10, 100, "rutaImagen" );
         escenario.agregarBanda( "Otra banda 10", 10, 10, 100, "rutaImagen" );
-
         resultado = escenario.agregarBanda( "Otra banda 11", 10, 10, 300, "rutaImagen" );
         assertFalse( "No debería haber presupuesto suficiente para agregar la banda", resultado );
 
@@ -211,6 +210,7 @@ public class EscenarioTest
     {
         // TODO Parte 4 Punto D: Completar el método según la documentación dada.
     	setupEscenario2();
+    	System.out.println();
     	assertNotNull("No se encontro",escenario.buscarPorCantidadDeCanciones(4));
     	 assertNull("No existe",escenario.buscarPorCantidadDeCanciones(12));
     	  
@@ -235,6 +235,7 @@ public class EscenarioTest
     	Banda banda3= (Banda)escenario.darBandas().get(2);
     	Banda banda4= (Banda)escenario.darBandas().get(3);
     	Banda banda5= (Banda)escenario.darBandas().get(4);
+    	System.out.println(banda1.darNombre());
     	assertTrue("No esta bien arreglado", banda1.darNombre().equals("Aventureros"));
 
     	assertTrue("No esta bien arreglado", banda2.darNombre().equals("Borbotones"));
@@ -242,7 +243,7 @@ public class EscenarioTest
     	assertTrue("No esta bien arreglado", banda3.darNombre().equals("Caifanes"));
 
     	assertTrue("No esta bien arreglado", banda4.darNombre().equals("On Planets"));
-
+    	
     	assertTrue("No esta bien arreglado", banda5.darNombre().equals("Other"));
     }
 
@@ -265,15 +266,16 @@ public class EscenarioTest
     	Banda banda3= (Banda)escenario.darBandas().get(2);
     	Banda banda4= (Banda)escenario.darBandas().get(3);
     	Banda banda5= (Banda)escenario.darBandas().get(4);
+    	System.out.println(banda2.darNombre());
     	assertTrue("No esta bien arreglado", banda1.darNombre().equals("Aventureros"));
 
-    	assertTrue("No esta bien arreglado", banda2.darNombre().equals("Borbotones"));
+    	assertTrue("No esta bien arreglado", banda2.darNombre().equals("On Planets"));
 
-    	assertTrue("No esta bien arreglado", banda3.darNombre().equals("Caifanes"));
+    	assertTrue("No esta bien arreglado", banda3.darNombre().equals("Borbotones"));
 
-    	assertTrue("No esta bien arreglado", banda4.darNombre().equals("On Planets"));
+    	assertTrue("No esta bien arreglado", banda4.darNombre().equals("Other"));
 
-    	assertTrue("No esta bien arreglado", banda5.darNombre().equals("Other"));
+    	assertTrue("No esta bien arreglado", banda5.darNombre().equals("Caifanes"));
    
     }
 
@@ -290,22 +292,25 @@ public class EscenarioTest
         // TODO Parte 3 Punto F: Completar el método según la documentación dada.
     	setupEscenario2();
     	setupEscenario3();
-    	escenario.ordenarPorCantidadDeFans();
+    	escenario.ordenarPorCantidadDeCanciones();
     	Banda banda1= (Banda) escenario.darBandas().get(0);
     	Banda banda2= (Banda)escenario.darBandas().get(1);
     	Banda banda3= (Banda)escenario.darBandas().get(2);
     	Banda banda4= (Banda)escenario.darBandas().get(3);
     	Banda banda5= (Banda)escenario.darBandas().get(4);
-    	assertTrue("No esta bien arreglado", banda2.darNombre().equals("Aventureros"));
-
+    	System.out.println( banda1.darNombre());
     	assertTrue("No esta bien arreglado", banda1.darNombre().equals("Borbotones"));
 
-    	assertTrue("No esta bien arreglado", banda5.darNombre().equals("Caifanes"));
-
+    	assertTrue("No esta bien arreglado", banda2.darNombre().equals("Aventureros"));
+    	
     	assertTrue("No esta bien arreglado", banda3.darNombre().equals("On Planets"));
 
     	assertTrue("No esta bien arreglado", banda4.darNombre().equals("Other"));
    
+    	
+    	assertTrue("No esta bien arreglado", banda5.darNombre().equals("Caifanes"));
+
+    	
     }
 
 }
