@@ -64,7 +64,6 @@ public class BandaTest
     public void testBanda( )
     {
         assertTrue( "El nombre no es correcto", banda.darNombre( ).equals( "Caifanes" ) );
-        assertEquals( "El número de fans no es correcto", banda.darCantidadDeFans( ), 56000 );
         assertEquals( "El número de canciones no es correcto", banda.darCantidadDeCanciones( ), 5 );
         assertTrue( "El costo no es correcto", 5000000 == banda.darCosto( ) );
         assertTrue( "La ruta de la imagen no es correcta", banda.darRutaImagen( ).equals( "./data/imagenes/bandas/rock.png" ) );
@@ -80,9 +79,19 @@ public class BandaTest
      * 2) La banda contra la cual se compara tiene un nombre lexicográficamente mayor. <br>
      * 3) La banda contra la cual se compara tiene un nombre lexicográficamente menor. <br>
      */
+    @Test
     public void testCompararPorNombre( )
     {
         // TODO Parte 2 Punto D: Completar el método según la documentación dada.
+    	Banda banda1= new Banda("Caifanes", 783, 6, 345656,"./data/imagenes/bandas/rock.png"  );
+    	Banda banda2= new Banda("Zolaida", 784, 5, 3656,"./data/imagenes/bandas/rock.png"  );
+    	Banda banda3= new Banda("Ade", 73, 6, 5656,"./data/imagenes/bandas/rock.png"  );
+    	assertEquals( "El resultado no es el esperado", banda.compararPorNombre(banda1), 0 );
+    	assertEquals( "El resultado no es el esperado", banda.compararPorNombre(banda2), -1 );
+    	assertEquals( "El resultado no es el esperado", banda.compararPorNombre(banda3), 1 );
+    	 
+    	  
+         
     }
 
     /**
@@ -95,10 +104,19 @@ public class BandaTest
      * 2) La banda contra la cual se compara tiene mayor cantidad de fans. <br>
      * 3) La banda contra la cual se compara tiene menor cantidad de fans. <br>
      */
+    @Test
     public void testCompararPorCantidadDeFans( )
     {
         // TODO Parte 2 Punto E: Completar el método según la documentación dada.
+    	Banda banda1= new Banda("Caifanes", 56000, 6, 345656,"./data/imagenes/bandas/rock.png"  );
+    	Banda banda2= new Banda("Zolaida", 56050, 5, 3656,"./data/imagenes/bandas/rock.png"  );
+    	Banda banda3= new Banda("Ade", 73, 6, 5656,"./data/imagenes/bandas/rock.png"  );
+    	assertEquals( "El resultado no es el esperado", banda.compararPorCantidadDeFans(banda1), 0 );
+    	assertEquals( "El resultado no es el esperado", banda.compararPorCantidadDeFans(banda2), -1 );
+    	assertEquals( "El resultado no es el esperado", banda.compararPorCantidadDeFans(banda3), 1 );
+    	 
     }
+    
 
     /**
      * Prueba 4: Verifica el método compararPorCantidadDeCanciones. <br>
@@ -110,9 +128,17 @@ public class BandaTest
      * 2) La banda contra la cual se compara tiene mayor cantidad de canciones. <br>
      * 3) La banda contra la cual se compara tiene menor cantidad de canciones. <br>
      */
+    @Test
     public void testCompararPorCantidadDeCanciones( )
     {
-        // TODO Parte 2 Punto F: Completar el método según la documentación dada.
+    	        // TODO Parte 2 Punto F: Completar el método según la documentación dada.
+    	Banda banda1= new Banda("Caifanes", 56000, 5, 345656,"./data/imagenes/bandas/rock.png"  );
+    	Banda banda2= new Banda("Zolaida", 56050, 8, 3656,"./data/imagenes/bandas/rock.png"  );
+    	Banda banda3= new Banda("Ade", 73, 3, 5656,"./data/imagenes/bandas/rock.png"  );
+    	assertEquals( "El resultado no es el esperado", banda.compararPorCantidadDeCanciones(banda1), 0 );
+    	assertEquals( "El resultado no es el esperado", banda.compararPorCantidadDeCanciones(banda2), -1 );
+    	assertEquals( "El resultado no es el esperado", banda.compararPorCantidadDeCanciones(banda3), 1 );
+    	 
     }
 
 }
