@@ -164,9 +164,9 @@ public class Banda
     public int compararPorCantidadDeCanciones( Banda pBanda )
     {
         // TODO Parte 2 Punto C: Completar el método según su documentación.
-    	if (cantidadDeCanciones==pBanda.darCantidadDeFans() )
+    	if (cantidadDeCanciones==pBanda.darCantidadDeCanciones() )
             return 0;
-        else if (cantidadDeCanciones>pBanda.darCantidadDeFans())
+        else if (cantidadDeCanciones>pBanda.darCantidadDeCanciones())
             return 1;
         else
             return -1;

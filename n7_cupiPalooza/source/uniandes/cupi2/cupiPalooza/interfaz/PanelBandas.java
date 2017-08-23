@@ -79,6 +79,7 @@ public class PanelBandas extends JPanel implements ActionListener, ListSelection
     /**
      * Lista de las bandas en el escenario.
      */
+    private JList listaBandas;
     // TODO Parte 5 Punto A: Declarar el atributo listaBandas de tipo JList.
 
     /**
@@ -160,6 +161,8 @@ public class PanelBandas extends JPanel implements ActionListener, ListSelection
         fondo = new ImageIcon( "./data/imagenes/esc1.png" );
         setLayout( new BorderLayout( ) );
 
+        listaBandas = new JList<>();
+        listaBandas.addListSelectionListener(this);
         // TODO Parte 5 Punto B: Inicialice el atributo listaBandas.
 
         // TODO Parte 5 Punto C: Agregue el ListSelecionListener al atributo listaBandas.
@@ -275,7 +278,7 @@ public class PanelBandas extends JPanel implements ActionListener, ListSelection
         habilitar( );
 
         // TODO Parte 5 Punto D: Asigne la lista de bandas al atributo listaBandas.
-
+        listaBandas.setListData(pBandas.toArray());
         imagenBanda.setIcon( null );
         txtFans.setText( "" );
         txtCanciones.setText( "" );
